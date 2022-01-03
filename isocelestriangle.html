@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="homestyle.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    <title>Isoceles Triangle</title>
+    <style>
+        body {
+            background-color: rgba(255, 192, 203, 0.288);
+            padding: 10px;
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="rect-heading"><u>ISOCELES TRIANGLE</u></h1>
+    <div class="shape-img">
+        <img src="isoceles triangle.png" alt="Isoceles Triangle image" height="190px">
+    </div>
+    <p> An isosceles triangle therefore has both two equal sides and two equal angles.</p>
+    <hr>
+    <h3>Time for your Query!</h3>
+    <h4>Input the data available with you in the respective fields.</h4>
+    <h6><i> NOTE: Make sure you enter all the parameters in METER unit. The calculator will provide the answer in meters
+            only. So Convert the dimentions in meter before putting it down in the input fields.</i></h6>
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12 input-field my-4">
+            <label for="fside">1st Side:</label>
+            <input type="number" name="fside" id="fside" placeholder="enter first side">
+            <h6>[Since 2 out of 3 sides of the Isoceles Triangle are equal, we are accepting only one parameter such
+                that its value is specified both the equal sides.]</h6>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 input-field my-4">
+            <label for="sside">Second Side:</label>
+            <input type="number" name="sside" id="sside" placeholder="enter Second side">
+            <h6>[Since Isoceles Triangle has one side which is not equal to other 2 sides. This input field accepts that
+                parameter. It is also termed as 'Base']</h6>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 input-field my-4">
+            <label for="height">Height:</label>
+            <input type="number" name="height" id="height" placeholder="enter height">
+            <h6>[It is an altitude or a straight line that falls from the vertex of the Triangle to the mid-point of the
+                base.]</h6>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12 input-field my-4">
+            <label for="area">Area:</label>
+            <input type="number" name="area" id="area" placeholder="enter area">
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 input-field my-4">
+            <label for="perimeter">Perimeter:</label>
+            <input type="number" name="perimeter" id="perimeter" placeholder="enter perimeter">
+        </div>
+    </div>
+    <div class="submit-btn">
+        <a href="#givennumber"><button type="button" class="btn btn-outline-dark" id="bt">Submit</button></a>
+    </div>
+    <br>
+    <hr>
+    <section class="solution">
+        <h2>The Solution goes here:</h2>
+        <h4>Given:</h4>
+        <ul>
+            <li id="givenfside"></li>
+            <li id="givensside"></li>
+            <li id="givenheight"></li>
+            <li id="givenarea"></li>
+            <li id="givenperimeter"></li>
+            <li id="givennumber"></li>
+        </ul>
+        <h4>Formulas used for Isoceles Triangle:</h4>
+        <ul>
+            <p>Here, the First side is taken as 'a'(which symbolises the 2 equal sides) and the Second side is taken as
+                'b'(the base)</p>
+            <li>h = Sq. root((a * a) - (b * b) / 4)</li>
+            <li>A = (b * h) / 2</li>
+            <li>P = (2 * a) + b</li>
+            <p>The formulas for other parameters can be derived from these 3 given formulas for Height, Perimeter and
+                Area</p>
+        </ul>
+        <div class="soln" id="soln">
+            <h4>Solution of all the remaining parameters goes here:</h4>
+        </div>
+    </section>
+    
+    <script>
+        document.getElementById('bt').addEventListener('click', function () {
+            document.querySelector('.solution').style.display = 'block'
+            s = parseFloat(document.getElementById('fside').value)
+            b = parseFloat(document.getElementById('sside').value)
+            h = parseFloat(document.getElementById('height').value)
+            a = parseFloat(document.getElementById('area').value)
+            p = parseFloat(document.getElementById('perimeter').value)
+            console.log(s)
+            console.log(b)
+            console.log(h)
+            console.log(a)
+            console.log(p)
+            pg = 0
+            if (isNaN(s) == false) {
+                document.getElementById('givenfside').innerHTML = `Equal Sides = ${s}m`
+                document.getElementById('givenfside').style.display = 'block'
+                pg += 1
+            }
+            else
+                document.getElementById('givenfside').style.display = 'none'
+            if (isNaN(b) == false) {
+                document.getElementById('givensside').innerHTML = `Base = ${b}m`
+                document.getElementById('givensside').style.display = 'block'
+                pg += 1
+            }
+            else
+                document.getElementById('givensside').style.display = 'none'
+            if (isNaN(h) == false) {
+                document.getElementById('givenheight').innerHTML = `Height = ${h}m`
+                document.getElementById('givenheight').style.display = 'block'
+                pg += 1
+            }
+            else
+                document.getElementById('givenheight').style.display = 'none'
+            if (isNaN(a) == false) {
+                document.getElementById('givenarea').innerHTML = `Area = ${a}m Sq.`
+                document.getElementById('givenarea').style.display = 'block'
+                pg += 1
+            }
+            else
+                document.getElementById('givenarea').style.display = 'none'
+            if (isNaN(p) == false) {
+                document.getElementById('givenperimeter').innerHTML = `Perimeter = ${p}m`
+                document.getElementById('givenperimeter').style.display = 'block'
+                pg += 1
+            }
+            else
+                document.getElementById('givenperimeter').style.display = 'none'
+
+            if (pg < 2) {
+                document.getElementById('givennumber').innerHTML = `${pg} parameter is specified. Not sufficient. Give atleast 2 parameters.`
+                document.getElementById('givennumber').style.visibility = 'visible'
+            }
+            else {
+                document.getElementById('givennumber').style.visibility = 'hidden'
+                console.log('good to go for solution')
+                if (isNaN(s)) {
+                    if (isNaN(b) == false && isNaN(h) == false) {
+                        s = Math.sqrt(Math.pow(h, 2) + Math.pow((b / 2), 2))
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\t2 Equal Sides = ${s}m, using Pythagora's Theorem (Sq.root( Sq(Height) + Sq(Base / 2)))`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                    else if (isNaN(b) == false && isNaN(a) == false) {
+                        s = Math.sqrt(Math.pow(((2 * a) / b), 2) + Math.pow((b / 2), 2))
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\t2 Equal Sides = ${s}m, using ((2 * Area) / Base) to calculate the Height first and then using the resultant Height to find the Equal sides of the Triangle using Pythagora's Theorem (Sq.root( Sq(Height) + Sq(Base / 2)))`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                    else if (isNaN(b) == false && isNaN(p) == false) {
+                        s = (p - b) / 2
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\t2 Equal Sides = ${s}m, using ((Perimeter - Base) / 2)`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                    else if (isNaN(h) == false && isNaN(a) == false) {
+                        s = Math.sqrt(Math.pow(h, 2) + Math.pow((a / h), 2))
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\t2 Equal Sides = ${s}m, using ((2 * Area) / Height) to calculate the Base first and then using the resultant Base to find the Equal sides of the Triangle using Pythagora's Theorem (Sq.root( Sq(Height) + Sq(Base / 2)))`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                    else if (isNaN(h) == false && isNaN(p) == false) {
+                        s = (4 * Math.pow(h, 2) + Math.pow(p, 2) / (4 * p))
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\t2 Equal Sides = ${s}m, using ((4 * Sq(Height) + Sq(Perimeter))/(4 * p))`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                    else if (isNaN(a) == false && (isNaN(p) == false)) {
+                        let bb;
+                        for(let j=1;j<p;j++){
+                            
+                            if((2*p*j*j*j)-(p*p*j*j)+(16*a*a)==0)
+                            {
+                              bb=j
+                              break;
+                            }
+                        }
+                        s=(p-bb)/2
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\t2 Equal Sides = ${s}m, using The Area and the Perimeter first, we get a polynomial expression [(2 * p)b^3 - (p * p)b^2 + (16 * a * a) = 0] from which we calculate the Base. Then, with the resultant base 2 equal sides are calculated using ((Perimeter - Base) / 2)`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                }
+                if (isNaN(b)) {
+                    if (isNaN(h) == false) {
+                        b = 2 * (Math.sqrt(Math.pow(s, 2) - Math.pow(h, 2)))
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\tBase = ${b}m, using Pythagora's Theorem (2 * Sq.root(Sq(s) - Sq(h)))`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                    else if (isNaN(a) == false) {
+                        dis = 16 * Math.pow(s, 4) - 64 * Math.pow(a, 2)
+                        b = Math.sqrt((4 * s * s - Math.sqrt(dis) / 2))
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\tBase = ${b}m, using the Quadratic equation in terms of Base. This equation is formed by utilizing the formulas of Pythagora's Theorem and the Area of the Triangle. The Equation : [(Base ^ 4) - 4 * (s ^ 2) * (b ^ 2) + 16 * (a ^ 2)) = 0]`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                    else if (isNaN(p) == false) {
+                        b = p - (2 * s)
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\tBase = ${b}m, using (Perimeter = (2 * Side) + Base)`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                }
+                if (isNaN(h)) {
+                    if (isNaN(a) == false) {
+                        h = (2 * a) / b
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\tHeight = ${h}m, using (Area = (Base * Height) / 2)`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                    else if (isNaN(s) == false && isNaN(b) == false) {
+                        h = Math.sqrt(Math.pow(s, 2) - Math.pow((b / 2), 2))
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\tHeight = ${h}m, using Pythagora's Theorem (Sq.root( Sq(Height) + Sq(Base / 2)))`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                }
+                if (isNaN(a)) {
+                    a = (b * h) / 2
+                    para = document.createElement('p').appendChild(document.createTextNode(`\n\tArea = ${a}m Sq., using (Area = (Base * Height) / 2)`))
+                    soln = document.getElementById('soln')
+                    soln.appendChild(para)
+                    br = document.createElement('br')
+                    soln.appendChild(br)
+                }
+                if (isNaN(p)) {
+                    p = (2 * s) + b
+                    para = document.createElement('p').appendChild(document.createTextNode(`\n\tPerimeter = ${p}m, using (Perimeter = (2 * Side) + Base)`))
+                    soln = document.getElementById('soln')
+                    soln.appendChild(para)
+                    br = document.createElement('br')
+                    soln.appendChild(br)
+                }
+            }
+            soln = document.getElementById('soln')
+            hr = document.createElement('hr')
+            soln.appendChild(hr)
+        })
+    </script>
+</body>
+
+</html>

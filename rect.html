@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="homestyle.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    <title>Rectangle</title>
+    <style>
+        body {
+            background-color: rgba(255, 192, 203, 0.288);
+            padding: 10px;
+            scroll-behavior: smooth;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1 class="rect-heading"><u>RECTANGLE</u></h1>
+    <div class="shape-img">
+        <img src="rectangle.png"
+            alt="rectangle image" height="150px">
+    </div>
+    <p>A rectangle is a 2D shape in geometry, having 4 sides and 4 corners. Its two sides meet at right angles. Thus, a rectangle has 4 angles, each measuring 90 ̊. The opposite sides of a rectangle have the same lengths and are parallel.</p><hr>
+    <h3>Time for your Query!</h3>
+    <h4>Input the data available with you in the respective fields.</h4>
+    <h6><i> NOTE: Make sure you enter all the parameters in METER unit. The calculator will provide the answer in meters
+            only. So Convert the dimentions in meter before putting it down in the input fields.</i></h6>
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12 input-field my-4">
+            <label for="length">Length:</label>
+            <input type="number" name="length" id="length" placeholder="enter length">
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 input-field my-4">
+            <label for="width">Width:</label>
+            <input type="number" name="width" id="width" placeholder="enter width">
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 input-field my-4">
+            <label for="area">Area:</label>
+            <input type="number" name="area" id="area" placeholder="enter area">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12 input-field my-4">
+            <label for="perimeter">Perimeter:</label>
+            <input type="number" name="perimeter" id="perimeter" placeholder="enter perimeter">
+        </div>
+    </div>
+    <div class="submit-btn">
+        <a href="#givennumber"><button type="button" class="btn btn-outline-dark" id="bt">Submit</button></a>
+    </div>
+    <br>
+    <hr>
+    <section class="solution">
+        <h2>The Solution goes here:</h2>
+        <h4>Given:</h4>
+        <ul>
+            <li id="givenlength"></li>
+            <li id="givenwidth"></li>
+            <li id="givenarea"></li>
+            <li id="givenperimeter"></li>
+            <li id="givennumber"></li>
+        </ul>
+        <h4>Formulas used for Rectangle:</h4>
+        <ul>
+            <li>A = l * b</li>
+            <li>P = 2 ( l + b )</li>
+            <p>The formulas for other parameters can be derived from these 2 given formulas for Perimeter and Area</p>
+        </ul>
+        <div class="soln" id="soln">
+            <h4>Solution of all the remaining parameters goes here:</h4>
+        </div>
+    </section>
+
+
+    <script>
+        document.getElementById('bt').addEventListener('click', function () {
+            document.querySelector('.solution').style.display='block'
+            l = parseFloat(document.getElementById('length').value)
+            w = parseFloat(document.getElementById('width').value)
+            a = parseFloat(document.getElementById('area').value)
+            p = parseFloat(document.getElementById('perimeter').value)
+            console.log(l)
+            console.log(w)
+            console.log(a)
+            console.log(p)
+            pg = 0
+            if (isNaN(l) == false) {
+                document.getElementById('givenlength').innerHTML = `Length = ${l}m`
+                document.getElementById('givenlength').style.display = 'block'
+                pg += 1
+            }
+            else
+                document.getElementById('givenlength').style.display = 'none'
+            if (isNaN(w) == false) {
+                document.getElementById('givenwidth').innerHTML = `Width = ${w}m`
+                document.getElementById('givenwidth').style.display = 'block'
+                pg += 1
+            }
+            else
+                document.getElementById('givenwidth').style.display = 'none'
+            if (isNaN(a) == false) {
+                document.getElementById('givenarea').innerHTML = `Area = ${a}m sq.`
+                document.getElementById('givenarea').style.display = 'block'
+                pg += 1
+            }
+            else
+                document.getElementById('givenarea').style.display = 'none'
+            if (isNaN(p) == false) {
+                document.getElementById('givenperimeter').innerHTML = `Perimeter = ${p}m`
+                document.getElementById('givenperimeter').style.display = 'block'
+                pg += 1
+            }
+            else
+                document.getElementById('givenperimeter').style.display = 'none'
+
+
+            if (pg < 2) {
+                document.getElementById('givennumber').innerHTML = `${pg} parameter is specified. Not sufficient. Give atleast 2 parameters.`
+                document.getElementById('givennumber').style.visibility = 'visible'
+            }
+            else {
+                document.getElementById('givennumber').style.visibility = 'hidden'
+                console.log('good to go for solution')
+                if (isNaN(l)) {
+                    if (isNaN(w) == false && isNaN(a) == false) {
+                        l = a / w
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\tLength = ${l}m, using (Area / Width)`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                    else if (isNaN(p) == false && isNaN(w) == false) {
+                        l = p / 2 - w
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\tLength = ${l}m, using (Perimeter / 2 - Width)`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                    else if (isNaN(a) == false && isNaN(p) == false) {
+                        discriminant = p * p - 16 * a
+                        if (discriminant >= 0) {
+                            l = Math.abs((-p - Math.sqrt(discriminant)) / 4)
+                            para = document.createElement('p').appendChild(document.createTextNode(`\n\tLength = ${l}m, using Quadratic Equation created in terms of Length.\nThis Equation is made by utilizing the formulas of Perimeter and Area of rectangle.\tThe Equation : [2 * (Length)^2 - (Perimeter * Length) + (2 * Area)]`))
+                            soln = document.getElementById('soln')
+                            soln.appendChild(para)
+                            br = document.createElement('br')
+                            soln.appendChild(br)
+                        }
+                        else {
+                            para = document.createElement('p').appendChild(document.createTextNode(`\n\tAccording to the inputs you have supplied to us, the Length is coming in Complex Numbers that is not feasible. So, kindly input the valid parameters.`))
+                            soln = document.getElementById('soln')
+                            soln.appendChild(para)
+                            br = document.createElement('br')
+                            soln.appendChild(br)
+                        }
+                    }
+                }
+                if (isNaN(w)) {
+                    if (isNaN(l) == false && isNaN(a) == false) {
+                        w = a / l
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\tWidth = ${w}m, using (Area / Length)`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                    else if (isNaN(p) == false && isNaN(l) == false) {
+                        w = p / 2 - l
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\tWidth = ${w}m, using (Perimeter / 2 - Length)`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                    else if (isNaN(a) == false && isNaN(p) == false) {
+                        discriminant = p * p - 16 * a
+                        if (discriminant >= 0) {
+                            w = Math.abs((-p + Math.sqrt(discriminant)) / 4)
+                            para = document.createElement('p').appendChild(document.createTextNode(`\n\tWidth = ${w}m, using Quadratic Equation created in terms of Width.\nThis Equation is made by utilizing the formulas of Perimeter and Area of rectangle.\tThe Equation : [2 * (Width)^2 - (Perimeter * Width) + (2 * Area)]`))
+                            soln = document.getElementById('soln')
+                            soln.appendChild(para)
+                            br = document.createElement('br')
+                            soln.appendChild(br)
+                        }
+                        else{
+                            para = document.createElement('p').appendChild(document.createTextNode(`\n\tAccording to the inputs you have supplied to us, the Width is coming in Complex Numbers that is not feasible. So, kindly input the valid parameters.`))
+                            soln = document.getElementById('soln')
+                            soln.appendChild(para)
+                            br = document.createElement('br')
+                            soln.appendChild(br)
+                        }
+                    }
+                }
+                if (isNaN(p)) {
+                    if (isNaN(l) == false && isNaN(w) == false) {
+                        p = 2 * (l + w)
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\tPerimeter = ${p}m, using (2 * (Length + Width))`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                    else if (isNaN(l) == false && isNaN(a) == false) {
+                        p = 2 * (l + (a / l))
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\tPerimeter = ${p}m, using (Area / Length) first to calculate the Width of rectangle and then putting the resultant Width in (2 * (Length + Width))`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                    else if (isNaN(w) == false && isNaN(a) == false) {
+                        p = 2 * (w + (a / w))
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\tPerimeter = ${p}m, using (Area / Width) first to calculate the Length of rectangle and then putting the resultant Length in (2 * (Length + Width))`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                }
+                if (isNaN(a)) {
+                    if (isNaN(l) == false && isNaN(w) == false) {
+                        a = l * w
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\tArea = ${a}m sq., using (Length * Width)`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                    else if (isNaN(l) == false && isNaN(p) == false) {
+                        a = l * ((p / 2) - l)
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\tArea = ${a}m sq., using ((Perimeter / 2) - Length) first to calculate the Width of rectangle and then putting the resultant Width in (Length * Width)`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                    else if (isNaN(w) == false && isNaN(p) == false) {
+                        a = w * ((p / 2) - w)
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\tArea = ${a}m sq., using ((Perimeter / 2) - Width) first to calculate the Length of rectangle and then putting the resultant Length in (Length * Width)`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                }
+
+
+            }
+            soln = document.getElementById('soln')
+            hr = document.createElement('hr')
+            soln.appendChild(hr)
+        })
+
+    </script>
+
+</body>
+
+</html>

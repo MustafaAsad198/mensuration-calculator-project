@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="homestyle.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    <title>Parallelogram</title>
+    <style>
+        body {
+            background-color: rgba(255, 192, 203, 0.288);
+            padding: 10px;
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="rect-heading"><u>PARALLELOGRAM</u></h1>
+    <div class="shape-img">
+        <img src="parallelogram.png" alt="Parallelogram image" height="150px">
+    </div>
+    <p>A parallelogram is a quadrilateral with opposite sides parallel (and therefore opposite angles equal).</p>
+    <hr>
+    <h3>Time for your Query!</h3>
+    <h4>Input the data available with you in the respective fields.</h4>
+    <h6><i> NOTE: Make sure you enter all the parameters in METER unit. The calculator will provide the answer in meters
+            only. So Convert the dimentions in meter before putting it down in the input fields.</i></h6>
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12 input-field my-4">
+            <label for="side">Side:</label>
+            <input type="number" name="side" id="side" placeholder="enter length">
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 input-field my-4">
+            <label for="base">Base:</label>
+            <input type="number" name="base" id="base" placeholder="enter width">
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 input-field my-4">
+            <label for="height">Height:</label>
+            <input type="number" name="height" id="height" placeholder="enter area">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12 input-field my-4">
+            <label for="area">Area:</label>
+            <input type="number" name="area" id="area" placeholder="enter perimeter">
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 input-field my-4">
+            <label for="perimeter">Perimeter:</label>
+            <input type="number" name="perimeter" id="perimeter" placeholder="enter perimeter">
+        </div>
+    </div>
+    <div class="submit-btn">
+        <a href="#givennumber"><button type="button" class="btn btn-outline-dark" id="bt">Submit</button></a>
+    </div>
+    <br>
+    <hr>
+    <section class="solution">
+        <h2>The Solution goes here:</h2>
+        <h4>Given:</h4>
+        <ul>
+            <li id="givenside"></li>
+            <li id="givenbase"></li>
+            <li id="givenheight"></li>
+            <li id="givenarea"></li>
+            <li id="givenperimeter"></li>
+            <li id="givennumber"></li>
+        </ul>
+        <h4>Formulas used for Rectangle:</h4>
+        <ul>
+            <li>A = (b * h) / 2</li>
+            <li>P = 2 ( s + b )</li>
+            <p>The formulas for other parameters can be derived from these 2 given formulas for Perimeter and Area</p>
+        </ul>
+        <div class="soln" id="soln">
+            <h4>Solution of all the remaining parameters goes here:</h4>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('bt').addEventListener('click', function () {
+            document.querySelector('.solution').style.display = 'block'
+            s = parseFloat(document.getElementById('side').value)
+            b = parseFloat(document.getElementById('base').value)
+            h = parseFloat(document.getElementById('height').value)
+            a = parseFloat(document.getElementById('area').value)
+            p = parseFloat(document.getElementById('perimeter').value)
+            console.log(s)
+            console.log(b)
+            console.log(h)
+            console.log(a)
+            console.log(p)
+            pg = 0
+            if (isNaN(s) == false) {
+                document.getElementById('givenside').innerHTML = `Side = ${s}m`
+                document.getElementById('givenside').style.display = 'block'
+                pg += 1
+            }
+            else
+                document.getElementById('givenside').style.display = 'none'
+            if (isNaN(b) == false) {
+                document.getElementById('givenbase').innerHTML = `Base = ${b}m`
+                document.getElementById('givenbase').style.display = 'block'
+                pg += 1
+            }
+            else
+                document.getElementById('givenbase').style.display = 'none'
+            if (isNaN(h) == false) {
+                document.getElementById('givenheight').innerHTML = `Height = ${h}m`
+                document.getElementById('givenheight').style.display = 'block'
+                pg += 1
+            }
+            else
+                document.getElementById('givenheight').style.display = 'none'
+            if (isNaN(a) == false) {
+                document.getElementById('givenarea').innerHTML = `Area = ${a}m sq.`
+                document.getElementById('givenarea').style.display = 'block'
+                pg += 1
+            }
+            else
+                document.getElementById('givenarea').style.display = 'none'
+            if (isNaN(p) == false) {
+                document.getElementById('givenperimeter').innerHTML = `Perimeter = ${p}m`
+                document.getElementById('givenperimeter').style.display = 'block'
+                pg += 1
+            }
+            else
+                document.getElementById('givenperimeter').style.display = 'none'
+
+
+            if (pg < 3) {
+                document.getElementById('givennumber').innerHTML = `${pg} parameter is specified. Not sufficient. Give atleast 3 parameters.`
+                document.getElementById('givennumber').style.visibility = 'visible'
+            }
+            else {
+                document.getElementById('givennumber').style.visibility = 'hidden'
+                console.log('good to go for solution')
+                if (isNaN(s)) {
+                    if (isNaN(b) == false && isNaN(h) == false && isNaN(a) == false) {
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\tlength cannot be solved since the given values are all the parameters of area of parallelogram. The formula of area is nowhere connected to that of perimeter, using the provided parameters. Hence, try some other combinations of input.`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                    else if (isNaN(b) == false && isNaN(h) == false && isNaN(p) == false) {
+                        s = p / 2 - b
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\tSide = ${s}m, using (Perimeter / 2 - Base)`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                    else if (isNaN(h) == false && isNaN(a) == false && isNaN(p) == false) {
+                        s = (p / 2) - (a / h)
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\tSide = ${s}m, using (Area / Height) we will calculate the Base first, then use the resulatant Base to calculate the Side using (Perimeter / 2 - Base)`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                }
+                if (isNaN(b)) {
+                    if (isNaN(a) == false && isNaN(h) == false) {
+                        b = a / h
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\tBase = ${b}m, using (Area / Height)`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                    else if (isNaN(p) == false && isNaN(s) == false) {
+                        b = p / 2 - s
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\tBase = ${b}m, using (Perimeter / 2 - Side)`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                }
+                if (isNaN(h)) {
+                    if (isNaN(b) == false && isNaN(a) == false) {
+                        h = a / b
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\tHeight = ${h}m, using (Area / Base)`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                    else {
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\theight cannot be solved since the given values are all the parameters of perimeter of parallelogram. The formula of area is nowhere connected to that of parameter, using the provided parameters. Hence, try some other combinations of input.`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                }
+                if (isNaN(a)) {
+                    if (isNaN(b) == false && isNaN(h) == false) {
+                        a = h * b
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\tArea = ${a}m, using (Base * Height)`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                    else {
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\tarea cannot be solved since the given values are all the parameters of perimeter of parallelogram. The formula of area is nowhere connected to that of parameter, using the provided parameters. Hence, try some other combinations of input.`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                }
+                if (isNaN(p)) {
+                    if (isNaN(s) == false && isNaN(b) == false) {
+                        p = 2 * (s + b)
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\tPerimeter = ${p}m, using (2 * (Side + Base))`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                }
+            }
+            soln = document.getElementById('soln')
+            hr = document.createElement('hr')
+            soln.appendChild(hr)
+
+
+        })
+
+    </script>
+</body>
+
+</html>

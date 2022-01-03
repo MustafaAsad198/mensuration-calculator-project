@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="homestyle.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    <title>Rhombus</title>
+    <style>
+        body {
+            background-color: rgba(255, 192, 203, 0.288);
+            padding: 10px;
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="rect-heading"><u>RHOMBUS</u></h1>
+    <div class="shape-img">
+        <img src="Rhombus.png" alt="Parallelogram image" height="150px">
+    </div>
+    <p>A rhombus is a special case of a parallelogram, and it is a four-sided quadrilateral. In a rhombus, opposite
+        sides are parallel and the opposite angles are equal. Moreover, all the sides of a rhombus are equal in length,
+        and the diagonals bisect each other at right angles.</p>
+    <hr>
+    <h3>Time for your Query!</h3>
+    <h4>Input the data available with you in the respective fields.</h4>
+    <h6><i> NOTE: Make sure you enter all the parameters in METER unit. The calculator will provide the answer in meters
+            only. So Convert the dimentions in meter before putting it down in the input fields.</i></h6>
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12 input-field my-4">
+            <label for="side">Side:</label>
+            <input type="number" name="side" id="side" placeholder="enter side">
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 input-field my-4">
+            <label for="fdiagonal">First Diagonal:</label>
+            <input type="number" name="fdiagonal" id="fdiagonal" placeholder="enter first diagonal">
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 input-field my-4">
+            <label for="sdiagonal">Second Diagonal:</label>
+            <input type="number" name="sdiagonal" id="sdiagonal" placeholder="enter second diagonal">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12 input-field my-4">
+            <label for="area">Area:</label>
+            <input type="number" name="area" id="area" placeholder="enter perimeter">
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-12 input-field my-4">
+            <label for="perimeter">Perimeter:</label>
+            <input type="number" name="perimeter" id="perimeter" placeholder="enter perimeter">
+        </div>
+    </div>
+    <div class="submit-btn">
+        <a href="#givennumber"><button type="button" class="btn btn-outline-dark" id="bt">Submit</button></a>
+    </div>
+    <br>
+    <hr>
+    <section class="solution">
+        <h2>The Solution goes here:</h2>
+        <h4>Given:</h4>
+        <ul>
+            <li id="givenside"></li>
+            <li id="givenfdiagonal"></li>
+            <li id="givensdiagonal"></li>
+            <li id="givenarea"></li>
+            <li id="givenperimeter"></li>
+            <li id="givennumber"></li>
+        </ul>
+        <h4>Formulas used for Rectangle:</h4>
+        <ul>
+            <li>'c' and 'd' are the diagonals of the Rhombus</li>
+            <li>A = (c * d) / 2</li>
+            <li>P = 4 *s</li>
+            <p>The formulas for other parameters can be derived from these 2 given formulas for Perimeter and Area</p>
+        </ul>
+        <div class="soln" id="soln">
+            <h4>Solution of all the remaining parameters goes here:</h4>
+        </div>
+    </section>
+
+    <script>
+         document.getElementById('bt').addEventListener('click', function () {
+            document.querySelector('.solution').style.display = 'block'
+            s = parseFloat(document.getElementById('side').value)
+            c = parseFloat(document.getElementById('fdiagonal').value)
+            d = parseFloat(document.getElementById('sdiagonal').value)
+            a = parseFloat(document.getElementById('area').value)
+            p = parseFloat(document.getElementById('perimeter').value)
+            console.log(s)
+            console.log(c)
+            console.log(d)
+            console.log(a)
+            console.log(p)
+            pg = 0
+            if (isNaN(s) == false) {
+                document.getElementById('givenside').innerHTML = `Side = ${s}m`
+                document.getElementById('givenside').style.display = 'block'
+                pg += 1
+            }
+            else
+                document.getElementById('givenside').style.display = 'none'
+            if (isNaN(c) == false) {
+                document.getElementById('givenfdiagonal').innerHTML = `First Diagonal = ${c}m`
+                document.getElementById('givenfdiagonal').style.display = 'block'
+                pg += 1
+            }
+            else
+                document.getElementById('givenfdiagonal').style.display = 'none'
+            if (isNaN(d) == false) {
+                document.getElementById('givensdiagonal').innerHTML = `Second Diagonal = ${d}m`
+                document.getElementById('givensdiagonal').style.display = 'block'
+                pg += 1
+            }
+            else
+                document.getElementById('givensdiagonal').style.display = 'none'
+            if (isNaN(a) == false) {
+                document.getElementById('givenarea').innerHTML = `Area = ${a}m sq.`
+                document.getElementById('givenarea').style.display = 'block'
+                pg += 1
+            }
+            else
+                document.getElementById('givenarea').style.display = 'none'
+            if (isNaN(p) == false) {
+                document.getElementById('givenperimeter').innerHTML = `Perimeter = ${p}m`
+                document.getElementById('givenperimeter').style.display = 'block'
+                pg += 1
+            }
+            else
+                document.getElementById('givenperimeter').style.display = 'none'
+                if (pg < 3) {
+                document.getElementById('givennumber').innerHTML = `${pg} parameter is specified. Not sufficient. Give atleast 3 parameters.`
+                document.getElementById('givennumber').style.visibility = 'visible'
+            }
+            else{
+                document.getElementById('givennumber').style.visibility = 'hidden'
+                console.log('good to go for solution')
+                if(isNaN(s)){
+                    if(isNaN(c)==false&&isNaN(d)==false&&isNaN(a)==false){
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\tside cannot be solved since the given values are all the parameters of area of rhombus. The formula of area is nowhere connected to that of perimeter, using the provided parameters. Hence, try some other combinations of input.`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                    else if(isNaN(c)==false&&isNaN(d)==false&&isNaN(p)==false){
+                        s=p/4
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\tSide = ${s}m, using (Side = Perimeter / 4)`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                    else if(isNaN(d)==false&&isNaN(a)==false&&isNaN(p)==false){
+                        s=p/4
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\tSide = ${s}m, using (Side = Perimeter / 4)`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                }
+                if(isNaN(c)){
+                    if(isNaN(d)==false&&isNaN(a)==false){
+                        c=(2*a)/d
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\tFirst Diagonal = ${c}m, using (First Diagonal = (Area * 2) / Second Diagonal)`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+
+                }
+                if(isNaN(d)){
+                    if(isNaN(c)==false&&isNaN(a)==false){
+                        d=(2*a)/c
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\tSecond Diagonal = ${d}m, using (Second Diagonal = (Area * 2) / First Diagonal)`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                }
+                if(isNaN(a)){
+                  if(isNaN(c)==false&&isNaN(d)==false){
+                    a=(c*d)/2
+                   para = document.createElement('p').appendChild(document.createTextNode(`\n\tArea = ${a}m Sq., using (Area = (First Diagonal * Second Diagonal) / 2)`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                  }
+                }
+                if(isNaN(p)){
+                    if(isNaN(s)==false){
+                        p=4*s
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\tPerimeter = ${p}m, using (Perimeter = 4 * Side)`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                    else{
+                        para = document.createElement('p').appendChild(document.createTextNode(`\n\tperimeter cannot be solved since the given values are all the parameters of area of rhombus. The formula of area is nowhere connected to that of perimeter, using the provided parameters. Hence, try some other combinations of input.`))
+                        soln = document.getElementById('soln')
+                        soln.appendChild(para)
+                        br = document.createElement('br')
+                        soln.appendChild(br)
+                    }
+                }
+            }
+            soln = document.getElementById('soln')
+            hr = document.createElement('hr')
+            soln.appendChild(hr)
+         })
+    </script>
+</body>
+
+</html>
